@@ -24,31 +24,6 @@ namespace Escuela
             }
         }
 
-        public void BuscarAlumno(int AlumnoID, TextBox NombreAlumno, ComboBox cmbCarrera)
-        {
-            try
-            {
-                var Registros = from valor in bdEscuela.tblAlumnos
-                                where valor.AlumnoID == AlumnoID
-                                select valor;
-                if (Registros.Any())
-                {
-                    foreach (var alumno in Registros)
-                    {
-                        NombreAlumno.Text = alumno.NombreAlumno;
-                        cmbCarrera.SelectedValue = alumno.CarreraID;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Número de alumno no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            } catch (Exception)
-            {
-                MessageBox.Show("Error al obtener el número de alumno", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         public void BuscarAlumnoID(string NombreAlumno, TextBox AlumnoID)
         {
             try
