@@ -206,6 +206,13 @@ namespace Escuela
 			return ((ISingleResult<BuscarAlumnoResult>)(result.ReturnValue));
 		}
 		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarAlumnoIDPorNombreAlumno")]
+		public ISingleResult<BuscarAlumnoIDPorNombreAlumnoResult> BuscarAlumnoIDPorNombreAlumno([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreAlumno", DbType="VarChar(1)")] string nombreAlumno)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), nombreAlumno);
+			return ((ISingleResult<BuscarAlumnoIDPorNombreAlumnoResult>)(result.ReturnValue));
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarCargaAlumno")]
 		public ISingleResult<BuscarCargaAlumnoResult> BuscarCargaAlumno([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CargaID", DbType="Int")] System.Nullable<int> cargaID)
 		{
@@ -372,13 +379,6 @@ namespace Escuela
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<ObtenerMaestrosResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarAlumnoIDPorNombreAlumno")]
-		public ISingleResult<BuscarAlumnoIDPorNombreAlumnoResult> BuscarAlumnoIDPorNombreAlumno([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreAlumno", DbType="VarChar(1)")] string nombreAlumno)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), nombreAlumno);
-			return ((ISingleResult<BuscarAlumnoIDPorNombreAlumnoResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -2076,6 +2076,32 @@ namespace Escuela
 		}
 	}
 	
+	public partial class BuscarAlumnoIDPorNombreAlumnoResult
+	{
+		
+		private int _Id;
+		
+		public BuscarAlumnoIDPorNombreAlumnoResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+	}
+	
 	public partial class BuscarCargaAlumnoResult
 	{
 		
@@ -2851,32 +2877,6 @@ namespace Escuela
 				if ((this._Dirección != value))
 				{
 					this._Dirección = value;
-				}
-			}
-		}
-	}
-	
-	public partial class BuscarAlumnoIDPorNombreAlumnoResult
-	{
-		
-		private int _Id;
-		
-		public BuscarAlumnoIDPorNombreAlumnoResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this._Id = value;
 				}
 			}
 		}

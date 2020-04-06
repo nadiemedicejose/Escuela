@@ -47,7 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlumnosQueries.cs" />
     <Compile Include="CargasAlumnosQueries.cs" />
+    <Compile Include="CargasDocentesQueries.cs" />
     <Compile Include="EscuelaDatabase.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -59,19 +61,37 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAlumnos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAlumnos.Designer.cs">
+      <DependentUpon>frmAlumnos.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCargasAlumnos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmCargasAlumnos.Designer.cs">
       <DependentUpon>frmCargasAlumnos.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCargasDocentes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCargasDocentes.Designer.cs">
+      <DependentUpon>frmCargasDocentes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmAlumnos.resx">
+      <DependentUpon>frmAlumnos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCargasAlumnos.resx">
       <DependentUpon>frmCargasAlumnos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCargasDocentes.resx">
+      <DependentUpon>frmCargasDocentes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
