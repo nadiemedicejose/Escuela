@@ -24,28 +24,53 @@ namespace Escuela
             }
         }
 
-        public void BuscarAlumno(int AlumnoID, TextBox NombreAlumno, ComboBox cmbCarrera)
+        public void InsertarCargaAlumno(int AlumnoID, int CarreraID, int MateriaID, int MaestroID)
+        {
+            tblCargasAlumno objCargaAlumno = new tblCargasAlumno();
+
+            try
+            {
+                objCargaAlumno.AlumnoID = AlumnoID;
+                objCargaAlumno.CarreraID = CarreraID;
+                objCargaAlumno.MateriaID = MateriaID;
+                objCargaAlumno.MaestroID = MaestroID;
+
+                bdEscuela.tblCargasAlumnos.InsertOnSubmit(objCargaAlumno);
+                bdEscuela.SubmitChanges();
+
+                MessageBox.Show("Carga de alumno guardada con éxito", "Éxito al guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("Error al insertar una carga de alumno: " + error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void ActualizarCargaAlumno(int CargaID, int AlumnoID, int CarreraID, int MateriaID, int MaestroID)
         {
             try
             {
-                var Registros = from valor in bdEscuela.tblAlumnos
-                                where valor.AlumnoID == AlumnoID
-                                select valor;
-                if (Registros.Any())
-                {
-                    foreach (var alumno in Registros)
-                    {
-                        NombreAlumno.Text = alumno.NombreAlumno;
-                        cmbCarrera.SelectedValue = alumno.CarreraID;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Número de alumno no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            } catch (Exception)
+                bdEscuela.ActualizarCargaAlumno(CargaID, AlumnoID, CarreraID, MateriaID, MaestroID);
+                bdEscuela.SubmitChanges();
+                MessageBox.Show("Actualizaste la carga académica del estudiante", "Éxito al guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception)
             {
-                MessageBox.Show("Error al obtener el número de alumno", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al actualizar carga académica del estudiante", "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void EliminarCargaAlumno(int CargaID)
+        {
+            try
+            {
+                bdEscuela.EliminarCargaAlumno(CargaID);
+                MessageBox.Show("Eliminaste la carga académica del alumno", "Éxito al eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al eliminar carga académica del alumno", "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -70,83 +95,6 @@ namespace Escuela
             } catch (Exception)
             {
                 MessageBox.Show("Error al obtener el número de alumno", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        public void RellenarCarreras(ComboBox cmbCarreras)
-        {
-            try
-            {
-                cmbCarreras.Items.Clear();
-                var Registros = from valor in bdEscuela.ObtenerCarreras()
-                                select valor;
-                cmbCarreras.DataSource = Registros.ToList();
-                cmbCarreras.DisplayMember = "Carrera";
-                cmbCarreras.ValueMember = "Id";
-                cmbCarreras.SelectedItem = null;
-            } catch (Exception)
-            {
-
-            }
-        }
-
-        public void ObtenerMateriasPorCarrera(int CarreraID, ComboBox cmbMaterias)
-        {
-            cmbMaterias.DataSource = null;
-            cmbMaterias.Items.Clear();
-
-            var Registros = from valor in bdEscuela.BuscarMateriasPorCarreraID(CarreraID)
-                            select valor;
-            cmbMaterias.DataSource = Registros.ToList();
-            cmbMaterias.DisplayMember = "Materia";
-            cmbMaterias.ValueMember = "Id";
-            cmbMaterias.SelectedItem = null;
-        }
-
-        public void ObtenerMaestrosPorMateriaID(int MateriaID, ComboBox cmbMaestros)
-        {
-            cmbMaestros.DataSource = null;
-            cmbMaestros.Items.Clear();
-
-            var Registros = from valor in bdEscuela.BuscarMaestrosPorMateriaID(MateriaID)
-                            select valor;
-            cmbMaestros.DataSource = Registros.ToList();
-            cmbMaestros.DisplayMember = "Maestro";
-            cmbMaestros.ValueMember = "Id";
-            cmbMaestros.SelectedItem = null;
-        }
-
-        public void InsertarCargaAlumno(int AlumnoID, int CarreraID, int MateriaID, int MaestroID)
-        {
-            tblCargasAlumno objCargaAlumno = new tblCargasAlumno();
-
-            try
-            {
-                objCargaAlumno.AlumnoID = AlumnoID;
-                objCargaAlumno.CarreraID = CarreraID;
-                objCargaAlumno.MateriaID = MateriaID;
-                objCargaAlumno.MaestroID = MaestroID;
-
-                bdEscuela.tblCargasAlumnos.InsertOnSubmit(objCargaAlumno);
-                bdEscuela.SubmitChanges();
-
-                MessageBox.Show("Carga de alumno guardada con éxito", "Éxito al guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            } catch (Exception error)
-            {
-                MessageBox.Show("Error al insertar una carga de alumno: " + error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        public void EliminarCargaAlumno(int CargaID)
-        {
-            try
-            {
-                bdEscuela.EliminarCargaAlumno(CargaID);
-                MessageBox.Show("Eliminaste la carga académica del alumno", "Éxito al eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            } catch (Exception)
-            {
-                MessageBox.Show("Error al eliminar carga académica del alumno", "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -209,18 +157,73 @@ namespace Escuela
                 MessageBox.Show("Número de maestro no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        public void ActualizarCargaAlumno(int CargaID, int AlumnoID, int CarreraID, int MateriaID, int MaestroID)
+        
+        public void RellenarCarreras(ComboBox cmbCarreras)
         {
             try
             {
-                bdEscuela.ActualizarCargaAlumno(CargaID, AlumnoID, CarreraID, MateriaID, MaestroID);
-                bdEscuela.SubmitChanges();
-                MessageBox.Show("Actualizaste la carga académica del estudiante", "Éxito al guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                cmbCarreras.Items.Clear();
+                var Registros = from valor in bdEscuela.ObtenerCarreras()
+                                select valor;
+                cmbCarreras.DataSource = Registros.ToList();
+                cmbCarreras.DisplayMember = "Carrera";
+                cmbCarreras.ValueMember = "Id";
+                cmbCarreras.SelectedItem = null;
+            } catch (Exception)
+            {
+
+            }
+        }
+
+        public void ObtenerMateriasPorCarrera(int CarreraID, ComboBox cmbMaterias)
+        {
+            cmbMaterias.DataSource = null;
+            cmbMaterias.Items.Clear();
+
+            var Registros = from valor in bdEscuela.BuscarMateriasPorCarreraID(CarreraID)
+                            select valor;
+            cmbMaterias.DataSource = Registros.ToList();
+            cmbMaterias.DisplayMember = "Materia";
+            cmbMaterias.ValueMember = "Id";
+            cmbMaterias.SelectedItem = null;
+        }
+
+        public void ObtenerMaestrosPorMateriaID(int MateriaID, ComboBox cmbMaestros)
+        {
+            cmbMaestros.DataSource = null;
+            cmbMaestros.Items.Clear();
+
+            var Registros = from valor in bdEscuela.BuscarMaestrosPorMateriaID(MateriaID)
+                            select valor;
+            cmbMaestros.DataSource = Registros.ToList();
+            cmbMaestros.DisplayMember = "Maestro";
+            cmbMaestros.ValueMember = "Id";
+            cmbMaestros.SelectedItem = null;
+        }
+
+        public void BuscarAlumno(int AlumnoID, TextBox NombreAlumno, ComboBox cmbCarrera)
+        {
+            try
+            {
+                var Registros = from valor in bdEscuela.tblAlumnos
+                                where valor.AlumnoID == AlumnoID
+                                select valor;
+                if (Registros.Any())
+                {
+                    foreach (var alumno in Registros)
+                    {
+                        NombreAlumno.Text = alumno.NombreAlumno;
+                        cmbCarrera.SelectedValue = alumno.CarreraID;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Número de alumno no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception)
             {
-                MessageBox.Show("Error al actualizar carga académica del estudiante", "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al obtener el número de alumno", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
