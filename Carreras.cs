@@ -10,16 +10,14 @@ using System.Windows.Forms;
 
 namespace Escuela
 {
-    public partial class frmAlumnos : Form
+    public partial class Carreras : Form
     {
-        AlumnosQueries objAlumno = new AlumnosQueries();
+        CarrerasQueries objCarreras = new CarrerasQueries();
         private String acción;
 
-        public frmAlumnos()
+        public Carreras()
         {
             InitializeComponent();
-            objAlumno.RellenarCarreras(cmbCarrera);
-            ActualizarTabla();
         }
 
         private void btnMenu_Click(object sender, EventArgs e)
@@ -38,9 +36,8 @@ namespace Escuela
 
         public void LimpiarCampos()
         {
-            txtAlumnoID.Text = null;
-            txtNombreAlumno.Text = null;
-            cmbCarrera.Text = null;
+            txtCarreraID.Text = null;
+            txtNombreCarrera.Text = null;
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -50,9 +47,8 @@ namespace Escuela
             // Nuevo, Actualizar, Guardar, Eliminar y Cancelar
             HabilitarBotonesMenu(0, 0, 0, 0, 1);
             btnBuscar.Enabled = false;
-            txtAlumnoID.Enabled = false;
-            txtNombreAlumno.Enabled = true;
-            cmbCarrera.Enabled = true;
+            txtCarreraID.Enabled = false;
+            txtNombreCarrera.Enabled = true;
             acción = "nuevo";
         }
 
@@ -60,9 +56,8 @@ namespace Escuela
         {
             HabilitarBotonesMenu(0, 0, 1, 0, 1);
             btnBuscar.Enabled = false;
-            txtAlumnoID.Enabled = false;
-            txtNombreAlumno.Enabled = true;
-            cmbCarrera.Enabled = true;
+            txtCarreraID.Enabled = false;
+            txtNombreCarrera.Enabled = true;
             acción = "actualizar";
         }
 
@@ -74,17 +69,16 @@ namespace Escuela
 
                 if (opcion == DialogResult.Yes)
                 {
-                    string NombreAlumno = txtNombreAlumno.Text;
-                    int CarreraID = Convert.ToInt32(cmbCarrera.SelectedValue);
+                    string NombreCarrera = txtNombreCarrera.Text;
 
                     if (acción == "nuevo")
                     {
-                        objAlumno.InsertarAlumno(NombreAlumno, CarreraID);
+                        objCarreras.InsertarCarrera(NombreCarrera);
                     }
                     else if (acción == "actualizar")
                     {
-                        int AlumnoID = Convert.ToInt32(dgvAlumnos.Rows[dgvAlumnos.CurrentRow.Index].Cells[0].Value);
-                        objAlumno.ActualizarAlumno(AlumnoID, NombreAlumno, CarreraID);
+                        int CarreraID = Convert.ToInt32(dgvCarreras.Rows[dgvCarreras.CurrentRow.Index].Cells[0].Value);
+                        objCarreras.ActualizarCarrera(CarreraID, NombreCarrera);
                     }
 
                     ActualizarTabla();
@@ -108,9 +102,9 @@ namespace Escuela
             {
                 try
                 {
-                    int AlumnoID = Convert.ToInt32(dgvAlumnos.Rows[dgvAlumnos.CurrentRow.Index].Cells[0].Value);
+                    int CarreraID = Convert.ToInt32(dgvCarreras.Rows[dgvCarreras.CurrentRow.Index].Cells[0].Value);
 
-                    objAlumno.EliminarAlumno(AlumnoID);
+                    objCarreras.EliminarCarrera(CarreraID);
                     ActualizarTabla();
                     HabilitarBotonesMenu(1, 0, 0, 0, 0);
                     LimpiarCampos();
@@ -118,7 +112,7 @@ namespace Escuela
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Selecciona al alumno deseas eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Selecciona la carrera que deseas eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -131,44 +125,37 @@ namespace Escuela
                 {
                     try
                     {
-                        int AlumnoID = Convert.ToInt32(txtAlumnoID.Text);
-                        bdEscuela.BuscarAlumno(AlumnoID);
+                        int CarreraID = Convert.ToInt32(txtCarreraID.Text);
 
-                        var Registros = from valor in bdEscuela.tblAlumnos
-                                        where valor.AlumnoID == AlumnoID
+                        var Registros = from valor in bdEscuela.tblCarreras
+                                        where valor.CarreraID == CarreraID
                                         select valor;
                         if (Registros.Any())
                         {
-                            foreach (var alumno in Registros)
+                            foreach (var carrera in Registros)
                             {
-                                txtNombreAlumno.Text = alumno.NombreAlumno;
-
-                                if (acción == "nuevo")
-                                {
-                                    cmbCarrera.Enabled = true;
-                                }
+                                txtNombreCarrera.Text = carrera.NombreCarrera;
                             }
                         }
                         else
                         {
                             LimpiarCampos();
-                            cmbCarrera.Enabled = false;
-                            txtAlumnoID.Focus();
-                            MessageBox.Show("Número de alumno no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            txtCarreraID.Focus();
+                            MessageBox.Show("Número de carrera no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     catch (Exception)
                     {
                         LimpiarCampos();
-                        txtAlumnoID.Focus();
-                        MessageBox.Show("Error al obtener el número de alumno", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtCarreraID.Focus();
+                        MessageBox.Show("Error al obtener el número de carrera", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Ingresa el número de Alumno", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtAlumnoID.Focus();
+                MessageBox.Show("Ingresa el número de carrera", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtCarreraID.Focus();
             }
         }
 
@@ -216,29 +203,13 @@ namespace Escuela
         public void HabilitarCampos(bool estado)
         {
             btnBuscar.Enabled = estado;
-            txtAlumnoID.Enabled = estado;
-            txtNombreAlumno.Enabled = estado;
-            cmbCarrera.Enabled = estado;
-        }
-
-        private void CargarMaterias_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if (acción == "nuevo" || acción == "actualizar")
-            {
-                try
-                {
-                    int CarreraID = Convert.ToInt32(cmbCarrera.SelectedValue);
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error al cargar materias", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+            txtCarreraID.Enabled = estado;
+            txtNombreCarrera.Enabled = estado;
         }
 
         public void ActualizarTabla()
         {
-            objAlumno.ObtenerAlumnos(dgvAlumnos);
+            objCarreras.ObtenerCarreras(dgvCarreras);
         }
 
         private void dgvCargasAlumnos_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -252,15 +223,14 @@ namespace Escuela
             HabilitarBotonesMenu(1, 1, 0, 1, 0);
             acción = "buscar";
 
-            String NombreAlumno = dgvAlumnos.CurrentRow.Cells[1].Value.ToString();
-            String NombreCarrera = dgvAlumnos.CurrentRow.Cells[2].Value.ToString();
+            int CarreraID = Convert.ToInt32(dgvCarreras.CurrentRow.Cells[0].Value);
+            String NombreCarrera = dgvCarreras.CurrentRow.Cells[1].Value.ToString();
 
-            txtNombreAlumno.Text = NombreAlumno;
-            objAlumno.BuscarAlumnoID(NombreAlumno, txtAlumnoID);
-            objAlumno.BuscarCarreraID(NombreCarrera, cmbCarrera);
+            txtCarreraID.Text = CarreraID.ToString();
+            txtNombreCarrera.Text = NombreCarrera;
         }
 
-        private void cmbCarrera_SelectionChangeCommitted(object sender, EventArgs e)
+        private void txtNombreMateria_TextChanged(object sender, EventArgs e)
         {
             HabilitarBotonesMenu(0, 0, 1, 0, 1);
         }

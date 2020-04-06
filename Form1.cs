@@ -31,8 +31,8 @@ namespace Escuela
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-            frmAlumnos menu = new frmAlumnos();
-            menu.Show();
+            Menu ventana = new Menu();
+            ventana.Show();
             this.Hide();
         }
     }

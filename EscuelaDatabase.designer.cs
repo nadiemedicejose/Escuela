@@ -380,6 +380,27 @@ namespace Escuela
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<ObtenerMaestrosResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ObtenerMaterias")]
+		public ISingleResult<ObtenerMateriasResult> ObtenerMaterias()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<ObtenerMateriasResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ActualizarMateria")]
+		public int ActualizarMateria([global::System.Data.Linq.Mapping.ParameterAttribute(Name="MateriaID", DbType="Int")] System.Nullable<int> materiaID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreMateria", DbType="VarChar(1)")] string nombreMateria)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), materiaID, nombreMateria);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarMateria")]
+		public int EliminarMateria([global::System.Data.Linq.Mapping.ParameterAttribute(Name="MateriaID", DbType="Int")] System.Nullable<int> materiaID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), materiaID);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblAlumnos")]
@@ -2877,6 +2898,50 @@ namespace Escuela
 				if ((this._Dirección != value))
 				{
 					this._Dirección = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ObtenerMateriasResult
+	{
+		
+		private int _Id;
+		
+		private string _Materia;
+		
+		public ObtenerMateriasResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Materia", DbType="VarChar(80) NOT NULL", CanBeNull=false)]
+		public string Materia
+		{
+			get
+			{
+				return this._Materia;
+			}
+			set
+			{
+				if ((this._Materia != value))
+				{
+					this._Materia = value;
 				}
 			}
 		}

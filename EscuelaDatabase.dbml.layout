@@ -50,70 +50,70 @@
         <elementListCompartment Id="aef95157-285b-43c8-bac0-deb2a95ddbc0" absoluteBounds="3.515, 3.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5 : 6.38544840494792); (5.57291666666667 : 6.38544840494792 : JumpStart); (5.77083583333333 : 6.38544840494792 : JumpEnd); (6.25 : 6.38544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 6.38544840494792); (5.57291666666667 : 6.38544840494792 : JumpStart); (5.77083583333333 : 6.38544840494792 : JumpEnd); (6.25 : 6.38544840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/EscuelaDatabaseDataContext/tblAlumno/tblAlumno_tblCargasAlumno" />
       <nodes>
         <classShapeMoniker Id="ad657279-3fbb-4d95-821a-4feadd9fe8e5" />
         <classShapeMoniker Id="ffd3c4e1-dee3-4c98-b18d-3c21b21bc1d1" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.75 : 5.44399251302083); (1.75 : 6.69314697265625); (3.5 : 6.69314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.75 : 5.44399251302083); (1.75 : 6.69314697265625); (3.5 : 6.69314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/EscuelaDatabaseDataContext/tblCarrera/tblCarrera_tblAlumno" />
       <nodes>
         <classShapeMoniker Id="094a42ff-b163-4e2e-8ac6-5e861f468cc5" />
         <classShapeMoniker Id="ad657279-3fbb-4d95-821a-4feadd9fe8e5" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 5.22199625651042); (5.52604166666667 : 5.22199625651042 : JumpStart); (5.77083583333333 : 5.22199625651042 : JumpEnd); (6.25 : 5.22199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 5.22199625651042); (5.52604166666667 : 5.22199625651042 : JumpStart); (5.77083583333333 : 5.22199625651042 : JumpEnd); (6.25 : 5.22199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/EscuelaDatabaseDataContext/tblCarrera/tblCarrera_tblCargasAlumno" />
       <nodes>
         <classShapeMoniker Id="094a42ff-b163-4e2e-8ac6-5e861f468cc5" />
         <classShapeMoniker Id="ffd3c4e1-dee3-4c98-b18d-3c21b21bc1d1" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 4.72199625651042); (5.52604166666667 : 4.72199625651042 : JumpStart); (5.77083583333333 : 4.72199625651042 : JumpEnd); (8.40625 : 4.72199625651042); (8.40625 : 3.57859537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 4.72199625651042); (5.52604166666667 : 4.72199625651042 : JumpStart); (5.77083583333333 : 4.72199625651042 : JumpEnd); (8.40625 : 4.72199625651042); (8.40625 : 3.57859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/EscuelaDatabaseDataContext/tblCarrera/tblCarrera_tblCargasDocente" />
       <nodes>
         <classShapeMoniker Id="094a42ff-b163-4e2e-8ac6-5e861f468cc5" />
         <classShapeMoniker Id="e2b65fd4-d493-4244-85ed-cb36bcf3b7ed" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.65625 : 8.75); (5.65625 : 5.61100062825521); (6.25 : 5.61100062825521)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.65625 : 8.75); (5.65625 : 5.61100062825521); (6.25 : 5.61100062825521)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/EscuelaDatabaseDataContext/tblMaestro/tblMaestro_tblCargasAlumno" />
       <nodes>
         <classShapeMoniker Id="eb199ed9-f5e8-418c-a2e3-3df19823e194" />
         <classShapeMoniker Id="ffd3c4e1-dee3-4c98-b18d-3c21b21bc1d1" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.6875025 : 8.75); (5.6875025 : 2.59375); (6.5 : 2.59375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.6875025 : 8.75); (5.6875025 : 2.59375); (6.5 : 2.59375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/EscuelaDatabaseDataContext/tblMaestro/tblMaestro_tblCargasDocente" />
       <nodes>
         <classShapeMoniker Id="eb199ed9-f5e8-418c-a2e3-3df19823e194" />
         <classShapeMoniker Id="e2b65fd4-d493-4244-85ed-cb36bcf3b7ed" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.609375 : 1.94399251302083); (5.609375 : 5.41649844238281); (6.25 : 5.41649844238281)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.609375 : 1.94399251302083); (5.609375 : 5.41649844238281); (6.25 : 5.41649844238281)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/EscuelaDatabaseDataContext/tblMateria/tblMateria_tblCargasAlumno" />
       <nodes>
         <classShapeMoniker Id="3d0ba26f-1be3-4317-831b-45e728ba6310" />
         <classShapeMoniker Id="ffd3c4e1-dee3-4c98-b18d-3c21b21bc1d1" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.75 : 1.34699625651042); (7.5 : 1.34699625651042); (7.5 : 2)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.75 : 1.34699625651042); (7.5 : 1.34699625651042); (7.5 : 2)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/EscuelaDatabaseDataContext/tblMateria/tblMateria_tblCargasDocente" />
       <nodes>
         <classShapeMoniker Id="3d0ba26f-1be3-4317-831b-45e728ba6310" />
         <classShapeMoniker Id="e2b65fd4-d493-4244-85ed-cb36bcf3b7ed" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.75 : 4.25); (1.75 : 3.7499995); (3.5 : 3.7499995)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.75 : 4.25); (1.75 : 3.7499995); (3.5 : 3.7499995)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/EscuelaDatabaseDataContext/tblCarrera/tblCarrera_tblMateriasCarrera" />
       <nodes>
         <classShapeMoniker Id="094a42ff-b163-4e2e-8ac6-5e861f468cc5" />
         <classShapeMoniker Id="f37d91d4-db31-4a24-a470-2f6342ed9217" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4.625 : 1.94399251302083); (4.625 : 3.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.625 : 1.94399251302083); (4.625 : 3.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/EscuelaDatabaseDataContext/tblMateria/tblMateria_tblMateriasCarrera" />
       <nodes>
         <classShapeMoniker Id="3d0ba26f-1be3-4317-831b-45e728ba6310" />

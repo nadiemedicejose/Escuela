@@ -174,8 +174,8 @@ namespace Escuela
 
         private void btnInicio_Click(object sender, EventArgs e)
         {
-            Form1 inicio = new Form1();
-            inicio.Show();
+            Menu ventana = new Menu();
+            ventana.Show();
             this.Hide();
         }
 
