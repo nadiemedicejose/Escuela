@@ -74,90 +74,6 @@ namespace Escuela
             }
         }
 
-        public void BuscarAlumnoID(string NombreAlumno, TextBox AlumnoID)
-        {
-            try
-            {
-                var Registros = from valor in bdEscuela.tblAlumnos
-                                where valor.NombreAlumno == NombreAlumno
-                                select valor;
-                if (Registros.Any())
-                {
-                    foreach (var alumno in Registros)
-                    {
-                        AlumnoID.Text = alumno.AlumnoID.ToString();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Número de alumno no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            } catch (Exception)
-            {
-                MessageBox.Show("Error al obtener el número de alumno", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        public void BuscarCarreraID(string NombreCarrera, ComboBox cmbCarrera)
-        {
-            var Registros = from valor in bdEscuela.ObtenerCarreras().ToList()
-                            where valor.Carrera == NombreCarrera
-                            select valor;
-            if (Registros.Any())
-            {
-                foreach (var carrera in Registros)
-                {
-                    cmbCarrera.SelectedValue = carrera.Id;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Número de carrera no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        public void BuscarMateriaID(int CarreraID, string NombreMateria, ComboBox cmbMateria)
-        {
-            ObtenerMateriasPorCarrera(CarreraID, cmbMateria);
-
-            var Registros = from valor in bdEscuela.tblMaterias
-                            where valor.NombreMateria == NombreMateria
-                            select valor;
-            if (Registros.Any())
-            {
-
-                foreach (var materia in Registros)
-                {
-                    cmbMateria.SelectedValue = materia.MateriaID;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Número de materia no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        public void BuscarMaestroID(int MateriaID, string NombreMaestro, ComboBox cmbMaestro)
-        {
-            ObtenerMaestrosPorMateriaID(MateriaID, cmbMaestro);
-
-            var Registros = from valor in bdEscuela.tblMaestros
-                            where valor.NombreMaestro == NombreMaestro
-                            select valor;
-            if (Registros.Any())
-            {
-
-                foreach (var maestro in Registros)
-                {
-                    cmbMaestro.SelectedValue = maestro.MaestroID;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Número de maestro no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        
         public void RellenarCarreras(ComboBox cmbCarreras)
         {
             try
@@ -175,12 +91,12 @@ namespace Escuela
             }
         }
 
-        public void ObtenerMateriasPorCarrera(int CarreraID, ComboBox cmbMaterias)
+        public void ObtenerMateriasPorCarrera(int CarreraID, int AlumnoID, ComboBox cmbMaterias)
         {
             cmbMaterias.DataSource = null;
             cmbMaterias.Items.Clear();
 
-            var Registros = from valor in bdEscuela.BuscarMateriasPorCarreraID(CarreraID)
+            var Registros = from valor in bdEscuela.BuscarMateriasNoAsignadasCA(CarreraID, AlumnoID)
                             select valor;
             cmbMaterias.DataSource = Registros.ToList();
             cmbMaterias.DisplayMember = "Materia";
@@ -224,6 +140,108 @@ namespace Escuela
             catch (Exception)
             {
                 MessageBox.Show("Error al obtener el número de alumno", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void BuscarAlumnoID(int CargaID, TextBox AlumnoID, TextBox NombreAlumno)
+        {
+            try
+            {
+                var Registros = from valor in bdEscuela.BuscarNombreAlumno(CargaID).ToList()
+                                select valor;
+                if (Registros.Any())
+                {
+                    foreach (var alumno in Registros)
+                    {
+                        AlumnoID.Text = alumno.AlumnoID.ToString();
+                        NombreAlumno.Text = alumno.NombreAlumno;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Número de alumno no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            } catch (Exception)
+            {
+                MessageBox.Show("Error al obtener el número de alumno", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void BuscarCarreraID(int CargaID, ComboBox cmbCarrera)
+        {
+            var Registros = from valor in bdEscuela.tblCargasAlumnos
+                            where valor.CargaID == CargaID
+                            select valor;
+            if (Registros.Any())
+            {
+                foreach (var carrera in Registros)
+                {
+                    cmbCarrera.SelectedValue = carrera.CarreraID;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Número de carrera no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void BuscarMateriaID(int CargaID, int CarreraID, ComboBox cmbMateria)
+        {
+            // rellenar materias de la carrera
+            cmbMateria.DataSource = null;
+            cmbMateria.Items.Clear();
+
+            var materiasResults = from valor in bdEscuela.BuscarMateriasPorCarreraID(CarreraID)
+                            select valor;
+
+            cmbMateria.DataSource = materiasResults.ToList();
+            cmbMateria.DisplayMember = "Materia";
+            cmbMateria.ValueMember = "Id";
+            cmbMateria.SelectedItem = null;
+
+            var Registros = from valor in bdEscuela.tblCargasAlumnos
+                            where valor.CargaID == CargaID
+                            select valor;
+            if (Registros.Any())
+            {
+                foreach (var materia in Registros)
+                {
+                    cmbMateria.SelectedValue = materia.MateriaID;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Número de materia no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void BuscarMaestroID(int CargaID, int MateriaID, ComboBox cmbMaestro)
+        {
+            // rellenar maestros de la materia
+            cmbMaestro.DataSource = null;
+            cmbMaestro.Items.Clear();
+
+            var maestrosResults = from valor in bdEscuela.BuscarMaestrosPorMateriaID(MateriaID)
+                                  select valor;
+
+            cmbMaestro.DataSource = maestrosResults.ToList();
+            cmbMaestro.DisplayMember = "Maestro";
+            cmbMaestro.ValueMember = "Id";
+            cmbMaestro.SelectedItem = null;
+
+            var Registros = from valor in bdEscuela.tblCargasAlumnos
+                            where valor.CargaID == CargaID
+                            select valor;
+            if (Registros.Any())
+            {
+                foreach (var maestro in Registros)
+                {
+                    cmbMaestro.SelectedValue = maestro.MaestroID;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Número de maestro no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

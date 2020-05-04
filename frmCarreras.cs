@@ -10,14 +10,15 @@ using System.Windows.Forms;
 
 namespace Escuela
 {
-    public partial class Carreras : Form
+    public partial class frmCarreras : Form
     {
         CarrerasQueries objCarreras = new CarrerasQueries();
         private String acción;
 
-        public Carreras()
+        public frmCarreras()
         {
             InitializeComponent();
+            ActualizarTabla();
         }
 
         private void btnMenu_Click(object sender, EventArgs e)

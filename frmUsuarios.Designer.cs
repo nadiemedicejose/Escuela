@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUsuarios));
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtContraseña = new System.Windows.Forms.TextBox();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
@@ -67,21 +68,21 @@
             this.panel2.Size = new System.Drawing.Size(660, 349);
             this.panel2.TabIndex = 37;
             // 
-            // txtDirección
+            // txtContraseña
             // 
             this.txtContraseña.Enabled = false;
             this.txtContraseña.Location = new System.Drawing.Point(126, 49);
-            this.txtContraseña.Name = "txtDirección";
+            this.txtContraseña.Name = "txtContraseña";
             this.txtContraseña.Size = new System.Drawing.Size(501, 27);
             this.txtContraseña.TabIndex = 29;
             this.txtContraseña.TextChanged += new System.EventHandler(this.DirecciónIngresada);
             // 
-            // dgvMaestros
+            // dgvUsuarios
             // 
             this.dgvUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsuarios.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvUsuarios.Location = new System.Drawing.Point(3, 165);
-            this.dgvUsuarios.Name = "dgvMaestros";
+            this.dgvUsuarios.Name = "dgvUsuarios";
             this.dgvUsuarios.ReadOnly = true;
             this.dgvUsuarios.Size = new System.Drawing.Size(654, 181);
             this.dgvUsuarios.TabIndex = 28;
@@ -103,21 +104,21 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // txtNombreMaestro
+            // txtNombreUsuario
             // 
             this.txtNombreUsuario.Enabled = false;
             this.txtNombreUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtNombreUsuario.Location = new System.Drawing.Point(421, 11);
-            this.txtNombreUsuario.Name = "txtNombreMaestro";
+            this.txtNombreUsuario.Name = "txtNombreUsuario";
             this.txtNombreUsuario.Size = new System.Drawing.Size(206, 27);
             this.txtNombreUsuario.TabIndex = 23;
             // 
-            // txtMaestroID
+            // txtUsuarioID
             // 
             this.txtUsuarioID.Enabled = false;
             this.txtUsuarioID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtUsuarioID.Location = new System.Drawing.Point(126, 11);
-            this.txtUsuarioID.Name = "txtMaestroID";
+            this.txtUsuarioID.Name = "txtUsuarioID";
             this.txtUsuarioID.Size = new System.Drawing.Size(166, 27);
             this.txtUsuarioID.TabIndex = 22;
             // 
@@ -305,7 +306,8 @@
             this.Controls.Add(this.btnInicio);
             this.Controls.Add(this.MenuOpciones);
             this.Font = new System.Drawing.Font("Lato", 12F);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmUsuarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Usuarios";

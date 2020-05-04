@@ -65,7 +65,7 @@ namespace Escuela
         {
             try
             {
-                DialogResult opcion = MessageBox.Show("¿Está seguro que desea guardar el registro?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult opcion = MessageBox.Show("¿Está seguro que desea guardar el registro?", "Guardar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (opcion == DialogResult.Yes)
                 {
@@ -86,9 +86,9 @@ namespace Escuela
 
                     ActualizarTabla();
                     HabilitarBotonesMenu(1, 0, 0, 0, 0);
+                    acción = "guardar";
                     LimpiarCampos();
                     HabilitarCampos(false);
-                    acción = "guardar";
                 }
 
                 
@@ -236,7 +236,8 @@ namespace Escuela
                 try
                 {
                     int CarreraID = Convert.ToInt32(cmbCarrera.SelectedValue);
-                    objCargaAlumno.ObtenerMateriasPorCarrera(CarreraID, cmbMateria);
+                    int AlumnoID = Convert.ToInt32(txtAlumnoID.Text);
+                    objCargaAlumno.ObtenerMateriasPorCarrera(CarreraID, AlumnoID, cmbMateria);
                     cmbMateria.Enabled = true;
                 }
                 catch (Exception)
@@ -267,21 +268,14 @@ namespace Escuela
             HabilitarBotonesMenu(1, 1, 0, 1, 0);
             acción = "buscar";
 
-            String NombreAlumno = dgvCargasAlumnos.CurrentRow.Cells[1].Value.ToString();
-            String NombreCarrera = dgvCargasAlumnos.CurrentRow.Cells[2].Value.ToString();
-            String NombreMateria = dgvCargasAlumnos.CurrentRow.Cells[3].Value.ToString();
-            String NombreMaestro = dgvCargasAlumnos.CurrentRow.Cells[4].Value.ToString();
-
-            txtNombreAlumno.Text = NombreAlumno;
-            objCargaAlumno.BuscarAlumnoID(NombreAlumno, txtAlumnoID);
-            objCargaAlumno.BuscarCarreraID(NombreCarrera, cmbCarrera);
-            int CarreraID = Convert.ToInt32(cmbCarrera.SelectedValue);
-            objCargaAlumno.BuscarMateriaID(CarreraID, NombreMateria, cmbMateria);
-            int MateriaID = Convert.ToInt32(cmbMateria.SelectedValue);
-            objCargaAlumno.BuscarMaestroID(MateriaID, NombreMaestro, cmbMaestro);
+            int CargaID = Convert.ToInt32(dgvCargasAlumnos.CurrentRow.Cells[0].Value.ToString());
+            objCargaAlumno.BuscarAlumnoID(CargaID, txtAlumnoID, txtNombreAlumno);
+            objCargaAlumno.BuscarCarreraID(CargaID, cmbCarrera);
+            objCargaAlumno.BuscarMateriaID(CargaID, Convert.ToInt32(cmbCarrera.SelectedValue.ToString()), cmbMateria);
+            objCargaAlumno.BuscarMaestroID(CargaID, Convert.ToInt32(cmbMateria.SelectedValue.ToString()), cmbMaestro);
         }
 
-        public void HabilitarCombos (int Materia, int Maestro)
+        public void HabilitarCombos(int Materia, int Maestro)
         {
             cmbMateria.Enabled = Convert.ToBoolean(Materia);
             cmbMaestro.Enabled = Convert.ToBoolean(Maestro);

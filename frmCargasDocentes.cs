@@ -228,7 +228,8 @@ namespace Escuela
                 try
                 {
                     int CarreraID = Convert.ToInt32(cmbCarrera.SelectedValue);
-                    objCargaDocente.ObtenerMateriasPorCarrera(CarreraID, cmbMateria);
+                    int MaestroID = Convert.ToInt32(txtMaestroID.Text);
+                    objCargaDocente.ObtenerMateriasPorCarrera(MaestroID, CarreraID, cmbMateria);
                     cmbMateria.Enabled = true;
                 }
                 catch (Exception)
@@ -262,7 +263,8 @@ namespace Escuela
             objCargaDocente.BuscarMaestroID(NombreMaestro, txtMaestroID);
             objCargaDocente.BuscarCarreraID(NombreCarrera, cmbCarrera);
             int CarreraID = Convert.ToInt32(cmbCarrera.SelectedValue);
-            objCargaDocente.BuscarMateriaID(CarreraID, NombreMateria, cmbMateria);
+            int MaestroID = Convert.ToInt32(txtMaestroID.Text);
+            objCargaDocente.BuscarMateriaID(MaestroID, CarreraID, NombreMateria, cmbMateria);
         }
 
         private void cmbMateria_SelectionChangeCommitted_1(object sender, EventArgs e)

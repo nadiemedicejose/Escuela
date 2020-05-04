@@ -127,5 +127,10 @@ namespace Escuela
                 MessageBox.Show("Número de alumno no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        public string BuscarNombreAlumno(int AlumnoID)
+        {
+            return bdEscuela.BuscarNombreAlumno(AlumnoID).ToString();
+        }
     }
 }

@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>owl.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -50,11 +53,11 @@
     <Compile Include="AlumnosQueries.cs" />
     <Compile Include="CargasAlumnosQueries.cs" />
     <Compile Include="CargasDocentesQueries.cs" />
-    <Compile Include="Carreras.cs">
+    <Compile Include="frmCarreras.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Carreras.Designer.cs">
-      <DependentUpon>Carreras.cs</DependentUpon>
+    <Compile Include="frmCarreras.Designer.cs">
+      <DependentUpon>frmCarreras.cs</DependentUpon>
     </Compile>
     <Compile Include="CarrerasQueries.cs" />
     <Compile Include="EscuelaDatabase.designer.cs">
@@ -114,9 +117,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes.Designer.cs">
+      <DependentUpon>Reportes.cs</DependentUpon>
+    </Compile>
     <Compile Include="UsuariosQueries.cs" />
-    <EmbeddedResource Include="Carreras.resx">
-      <DependentUpon>Carreras.cs</DependentUpon>
+    <EmbeddedResource Include="frmCarreras.resx">
+      <DependentUpon>frmCarreras.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -152,6 +161,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reportes.resx">
+      <DependentUpon>Reportes.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="EscuelaDatabase.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>EscuelaDatabase.designer.cs</LastGenOutput>
@@ -247,6 +259,33 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\046-stats.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\024-professor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\036-books-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\student.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\042-suitcase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\035-backpack-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\030-teacher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\038-owl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="owl.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

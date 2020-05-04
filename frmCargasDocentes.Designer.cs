@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCargasDocentes));
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgvCargasDocentes = new System.Windows.Forms.DataGridView();
             this.btnBuscar = new System.Windows.Forms.Button();
@@ -336,6 +337,7 @@
             this.Controls.Add(this.btnInicio);
             this.Controls.Add(this.MenuOpciones);
             this.Font = new System.Drawing.Font("Lato", 12F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "frmCargasDocentes";

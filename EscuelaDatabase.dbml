@@ -169,13 +169,6 @@
       <Column Name="Dirección" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.BuscarMaestrosPorMateriaID" Method="BuscarMaestrosPorMateriaID">
-    <Parameter Name="MateriaID" Parameter="materiaID" Type="System.Int32" DbType="Int" />
-    <ElementType Name="BuscarMaestrosPorMateriaIDResult">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Maestro" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.BuscarMateriasPorCarreraID" Method="BuscarMateriasPorCarreraID">
     <Parameter Name="CarreraID" Parameter="carreraID" Type="System.Int32" DbType="Int" />
     <ElementType Name="BuscarMateriasPorCarreraIDResult">
@@ -298,5 +291,35 @@
   <Function Name="dbo.EliminarMateria" Method="EliminarMateria">
     <Parameter Name="MateriaID" Parameter="materiaID" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.BuscarMateriasNoAsignadasCD" Method="BuscarMateriasNoAsignadasCD">
+    <Parameter Name="MaestroID" Parameter="maestroID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CarreraID" Parameter="carreraID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="BuscarMateriasNoAsignadasCDResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Materia" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BuscarMateriasNoAsignadasCA" Method="BuscarMateriasNoAsignadasCA">
+    <Parameter Name="CarreraID" Parameter="carreraID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="AlumnoID" Parameter="alumnoID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="BuscarMateriasNoAsignadasCAResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Materia" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BuscarMaestrosPorMateriaID" Method="BuscarMaestrosPorMateriaID">
+    <Parameter Name="MateriaID" Parameter="materiaID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="BuscarMaestrosPorMateriaIDResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Maestro" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BuscarNombreAlumno" Method="BuscarNombreAlumno">
+    <Parameter Name="CargaID" Parameter="cargaID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="BuscarNombreAlumnoResult">
+      <Column Name="AlumnoID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NombreAlumno" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
   </Function>
 </Database>

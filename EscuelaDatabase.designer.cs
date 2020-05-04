@@ -241,13 +241,6 @@ namespace Escuela
 			return ((ISingleResult<BuscarMaestroResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarMaestrosPorMateriaID")]
-		public ISingleResult<BuscarMaestrosPorMateriaIDResult> BuscarMaestrosPorMateriaID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="MateriaID", DbType="Int")] System.Nullable<int> materiaID)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), materiaID);
-			return ((ISingleResult<BuscarMaestrosPorMateriaIDResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarMateriasPorCarreraID")]
 		public ISingleResult<BuscarMateriasPorCarreraIDResult> BuscarMateriasPorCarreraID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CarreraID", DbType="Int")] System.Nullable<int> carreraID)
 		{
@@ -400,6 +393,34 @@ namespace Escuela
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), materiaID);
 			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarMateriasNoAsignadasCD")]
+		public ISingleResult<BuscarMateriasNoAsignadasCDResult> BuscarMateriasNoAsignadasCD([global::System.Data.Linq.Mapping.ParameterAttribute(Name="MaestroID", DbType="Int")] System.Nullable<int> maestroID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CarreraID", DbType="Int")] System.Nullable<int> carreraID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), maestroID, carreraID);
+			return ((ISingleResult<BuscarMateriasNoAsignadasCDResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarMateriasNoAsignadasCA")]
+		public ISingleResult<BuscarMateriasNoAsignadasCAResult> BuscarMateriasNoAsignadasCA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CarreraID", DbType="Int")] System.Nullable<int> carreraID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="AlumnoID", DbType="Int")] System.Nullable<int> alumnoID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), carreraID, alumnoID);
+			return ((ISingleResult<BuscarMateriasNoAsignadasCAResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarMaestrosPorMateriaID")]
+		public ISingleResult<BuscarMaestrosPorMateriaIDResult> BuscarMaestrosPorMateriaID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="MateriaID", DbType="Int")] System.Nullable<int> materiaID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), materiaID);
+			return ((ISingleResult<BuscarMaestrosPorMateriaIDResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BuscarNombreAlumno")]
+		public ISingleResult<BuscarNombreAlumnoResult> BuscarNombreAlumno([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CargaID", DbType="Int")] System.Nullable<int> cargaID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), cargaID);
+			return ((ISingleResult<BuscarNombreAlumnoResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -2407,50 +2428,6 @@ namespace Escuela
 		}
 	}
 	
-	public partial class BuscarMaestrosPorMateriaIDResult
-	{
-		
-		private int _Id;
-		
-		private string _Maestro;
-		
-		public BuscarMaestrosPorMateriaIDResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this._Id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Maestro", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Maestro
-		{
-			get
-			{
-				return this._Maestro;
-			}
-			set
-			{
-				if ((this._Maestro != value))
-				{
-					this._Maestro = value;
-				}
-			}
-		}
-	}
-	
 	public partial class BuscarMateriasPorCarreraIDResult
 	{
 		
@@ -2942,6 +2919,182 @@ namespace Escuela
 				if ((this._Materia != value))
 				{
 					this._Materia = value;
+				}
+			}
+		}
+	}
+	
+	public partial class BuscarMateriasNoAsignadasCDResult
+	{
+		
+		private int _Id;
+		
+		private string _Materia;
+		
+		public BuscarMateriasNoAsignadasCDResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Materia", DbType="VarChar(80) NOT NULL", CanBeNull=false)]
+		public string Materia
+		{
+			get
+			{
+				return this._Materia;
+			}
+			set
+			{
+				if ((this._Materia != value))
+				{
+					this._Materia = value;
+				}
+			}
+		}
+	}
+	
+	public partial class BuscarMateriasNoAsignadasCAResult
+	{
+		
+		private int _Id;
+		
+		private string _Materia;
+		
+		public BuscarMateriasNoAsignadasCAResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Materia", DbType="VarChar(80) NOT NULL", CanBeNull=false)]
+		public string Materia
+		{
+			get
+			{
+				return this._Materia;
+			}
+			set
+			{
+				if ((this._Materia != value))
+				{
+					this._Materia = value;
+				}
+			}
+		}
+	}
+	
+	public partial class BuscarMaestrosPorMateriaIDResult
+	{
+		
+		private int _Id;
+		
+		private string _Maestro;
+		
+		public BuscarMaestrosPorMateriaIDResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Maestro", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Maestro
+		{
+			get
+			{
+				return this._Maestro;
+			}
+			set
+			{
+				if ((this._Maestro != value))
+				{
+					this._Maestro = value;
+				}
+			}
+		}
+	}
+	
+	public partial class BuscarNombreAlumnoResult
+	{
+		
+		private int _AlumnoID;
+		
+		private string _NombreAlumno;
+		
+		public BuscarNombreAlumnoResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AlumnoID", DbType="Int NOT NULL")]
+		public int AlumnoID
+		{
+			get
+			{
+				return this._AlumnoID;
+			}
+			set
+			{
+				if ((this._AlumnoID != value))
+				{
+					this._AlumnoID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreAlumno", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string NombreAlumno
+		{
+			get
+			{
+				return this._NombreAlumno;
+			}
+			set
+			{
+				if ((this._NombreAlumno != value))
+				{
+					this._NombreAlumno = value;
 				}
 			}
 		}

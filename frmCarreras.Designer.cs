@@ -1,6 +1,6 @@
 ﻿namespace Escuela
 {
-    partial class Carreras
+    partial class frmCarreras
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCarreras));
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgvCarreras = new System.Windows.Forms.DataGridView();
             this.btnBuscar = new System.Windows.Forms.Button();
@@ -72,6 +73,7 @@
             this.dgvCarreras.ReadOnly = true;
             this.dgvCarreras.Size = new System.Drawing.Size(654, 181);
             this.dgvCarreras.TabIndex = 28;
+            this.dgvCarreras.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCargasAlumnos_CellClick);
             // 
             // btnBuscar
             // 
@@ -87,6 +89,7 @@
             this.btnBuscar.Size = new System.Drawing.Size(34, 34);
             this.btnBuscar.TabIndex = 27;
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // txtNombreCarrera
             // 
@@ -116,7 +119,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 19);
             this.label2.TabIndex = 18;
-            this.label2.Text = "Materia:";
+            this.label2.Text = "Carrera:";
             // 
             // label1
             // 
@@ -127,7 +130,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 19);
             this.label1.TabIndex = 17;
-            this.label1.Text = "Materia ID:";
+            this.label1.Text = "Carrera ID:";
             // 
             // titulo
             // 
@@ -153,6 +156,7 @@
             this.btnMenu.Size = new System.Drawing.Size(66, 66);
             this.btnMenu.TabIndex = 40;
             this.btnMenu.UseVisualStyleBackColor = true;
+            this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
             // 
             // btnInicio
             // 
@@ -198,6 +202,7 @@
             this.btnCancelar.Size = new System.Drawing.Size(36, 36);
             this.btnCancelar.TabIndex = 4;
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnEliminar
             // 
@@ -214,6 +219,7 @@
             this.btnEliminar.Size = new System.Drawing.Size(36, 36);
             this.btnEliminar.TabIndex = 3;
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnGuardar
             // 
@@ -230,6 +236,7 @@
             this.btnGuardar.Size = new System.Drawing.Size(36, 36);
             this.btnGuardar.TabIndex = 2;
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnActualizar
             // 
@@ -246,6 +253,7 @@
             this.btnActualizar.Size = new System.Drawing.Size(36, 36);
             this.btnActualizar.TabIndex = 1;
             this.btnActualizar.UseVisualStyleBackColor = true;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // btnNuevo
             // 
@@ -263,7 +271,7 @@
             this.btnNuevo.UseVisualStyleBackColor = true;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
-            // Carreras
+            // frmCarreras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -275,8 +283,9 @@
             this.Controls.Add(this.btnInicio);
             this.Controls.Add(this.MenuOpciones);
             this.Font = new System.Drawing.Font("Lato", 12F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "Carreras";
+            this.Name = "frmCarreras";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Carreras";
             this.TopMost = true;

@@ -117,9 +117,9 @@ bdEscuela.tblCargasDocentes.InsertOnSubmit(objCargaDocente);
             }
         }
 
-        public void BuscarMateriaID(int CarreraID, string NombreMateria, ComboBox cmbMateria)
+        public void BuscarMateriaID(int MaestroID, int CarreraID, string NombreMateria, ComboBox cmbMateria)
         {
-            ObtenerMateriasPorCarrera(CarreraID, cmbMateria);
+            ObtenerMateriasPorCarrera(MaestroID, CarreraID, cmbMateria);
 
             var Registros = from valor in bdEscuela.tblMaterias
                             where valor.NombreMateria == NombreMateria
@@ -177,12 +177,12 @@ bdEscuela.tblCargasDocentes.InsertOnSubmit(objCargaDocente);
             }
         }
 
-        public void ObtenerMateriasPorCarrera(int CarreraID, ComboBox cmbMaterias)
+        public void ObtenerMateriasPorCarrera(int MaestroID, int CarreraID, ComboBox cmbMaterias)
         {
             cmbMaterias.DataSource = null;
             cmbMaterias.Items.Clear();
 
-            var Registros = from valor in bdEscuela.BuscarMateriasPorCarreraID(CarreraID)
+            var Registros = from valor in bdEscuela.BuscarMateriasNoAsignadasCD(MaestroID, CarreraID)
                             select valor;
             cmbMaterias.DataSource = Registros.ToList();
             cmbMaterias.DisplayMember = "Materia";

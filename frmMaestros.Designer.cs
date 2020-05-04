@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMaestros));
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtDirección = new System.Windows.Forms.TextBox();
             this.dgvMaestros = new System.Windows.Forms.DataGridView();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.txtNombreMaestro = new System.Windows.Forms.TextBox();
             this.txtMaestroID = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -38,14 +40,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.titulo = new System.Windows.Forms.Label();
             this.MenuOpciones = new System.Windows.Forms.Panel();
-            this.btnBuscar = new System.Windows.Forms.Button();
-            this.btnMenu = new System.Windows.Forms.Button();
-            this.btnInicio = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnActualizar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
+            this.btnMenu = new System.Windows.Forms.Button();
+            this.btnInicio = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaestros)).BeginInit();
             this.MenuOpciones.SuspendLayout();
@@ -86,6 +87,22 @@
             this.dgvMaestros.Size = new System.Drawing.Size(654, 181);
             this.dgvMaestros.TabIndex = 28;
             this.dgvMaestros.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCargasAlumnos_CellClick);
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBuscar.Enabled = false;
+            this.btnBuscar.FlatAppearance.BorderSize = 0;
+            this.btnBuscar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnBuscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscar.Image = global::Escuela.Properties.Resources.search__32_;
+            this.btnBuscar.Location = new System.Drawing.Point(298, 6);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(34, 34);
+            this.btnBuscar.TabIndex = 27;
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // txtNombreMaestro
             // 
@@ -160,54 +177,6 @@
             this.MenuOpciones.Name = "MenuOpciones";
             this.MenuOpciones.Size = new System.Drawing.Size(228, 66);
             this.MenuOpciones.TabIndex = 28;
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBuscar.Enabled = false;
-            this.btnBuscar.FlatAppearance.BorderSize = 0;
-            this.btnBuscar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnBuscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.Image = global::Escuela.Properties.Resources.search__32_;
-            this.btnBuscar.Location = new System.Drawing.Point(298, 6);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(34, 34);
-            this.btnBuscar.TabIndex = 27;
-            this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
-            // 
-            // btnMenu
-            // 
-            this.btnMenu.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMenu.FlatAppearance.BorderSize = 0;
-            this.btnMenu.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
-            this.btnMenu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMenu.Image = global::Escuela.Properties.Resources.more2;
-            this.btnMenu.Location = new System.Drawing.Point(529, 13);
-            this.btnMenu.Name = "btnMenu";
-            this.btnMenu.Size = new System.Drawing.Size(66, 66);
-            this.btnMenu.TabIndex = 30;
-            this.btnMenu.UseVisualStyleBackColor = true;
-            this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
-            // 
-            // btnInicio
-            // 
-            this.btnInicio.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnInicio.FlatAppearance.BorderSize = 0;
-            this.btnInicio.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
-            this.btnInicio.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnInicio.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnInicio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInicio.Image = global::Escuela.Properties.Resources.home;
-            this.btnInicio.Location = new System.Drawing.Point(601, 13);
-            this.btnInicio.Name = "btnInicio";
-            this.btnInicio.Size = new System.Drawing.Size(66, 66);
-            this.btnInicio.TabIndex = 29;
-            this.btnInicio.UseVisualStyleBackColor = true;
-            this.btnInicio.Click += new System.EventHandler(this.btnInicio_Click);
             // 
             // btnCancelar
             // 
@@ -293,6 +262,38 @@
             this.btnNuevo.UseVisualStyleBackColor = true;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
+            // btnMenu
+            // 
+            this.btnMenu.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMenu.FlatAppearance.BorderSize = 0;
+            this.btnMenu.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.btnMenu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMenu.Image = global::Escuela.Properties.Resources.more2;
+            this.btnMenu.Location = new System.Drawing.Point(529, 13);
+            this.btnMenu.Name = "btnMenu";
+            this.btnMenu.Size = new System.Drawing.Size(66, 66);
+            this.btnMenu.TabIndex = 30;
+            this.btnMenu.UseVisualStyleBackColor = true;
+            this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
+            // 
+            // btnInicio
+            // 
+            this.btnInicio.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInicio.FlatAppearance.BorderSize = 0;
+            this.btnInicio.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.btnInicio.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInicio.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnInicio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInicio.Image = global::Escuela.Properties.Resources.home;
+            this.btnInicio.Location = new System.Drawing.Point(601, 13);
+            this.btnInicio.Name = "btnInicio";
+            this.btnInicio.Size = new System.Drawing.Size(66, 66);
+            this.btnInicio.TabIndex = 29;
+            this.btnInicio.UseVisualStyleBackColor = true;
+            this.btnInicio.Click += new System.EventHandler(this.btnInicio_Click);
+            // 
             // frmMaestros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -305,6 +306,7 @@
             this.Controls.Add(this.btnInicio);
             this.Controls.Add(this.MenuOpciones);
             this.Font = new System.Drawing.Font("Lato", 12F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMaestros";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

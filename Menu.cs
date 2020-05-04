@@ -33,7 +33,7 @@ namespace Escuela
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Carreras menu = new Carreras();
+            frmCarreras menu = new frmCarreras();
             menu.Show();
             this.Hide();
         }
@@ -70,6 +70,13 @@ namespace Escuela
         {
             Form1 menu = new Form1();
             menu.Show();
+            this.Hide();
+        }
+
+        private void btnReportes_Click(object sender, EventArgs e)
+        {
+            Reportes reportes = new Reportes();
+            reportes.Show();
             this.Hide();
         }
     }
