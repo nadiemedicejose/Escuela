@@ -11,6 +11,7 @@ namespace Escuela
     {
         EscuelaDatabaseDataContext bdEscuela = new EscuelaDatabaseDataContext();
 
+        // Obtiene las carreras y las inserta en DataGridView
         public void ObtenerCarreras(DataGridView dgvCarreras)
         {
             try
@@ -22,6 +23,25 @@ namespace Escuela
             catch (Exception)
             {
                 MessageBox.Show("Error al obtener datos de carreras", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        // Obtiene las carreras y las inserta en ComboBox
+        public void RellenarCarreras(ComboBox cmbCarreras)
+        {
+            try
+            {
+                cmbCarreras.Items.Clear();
+                var Registros = from valor in bdEscuela.ObtenerCarreras()
+                                select valor;
+                cmbCarreras.DataSource = Registros.ToList();
+                cmbCarreras.DisplayMember = "Carrera";
+                cmbCarreras.ValueMember = "Id";
+                cmbCarreras.SelectedItem = null;
+            }
+            catch (Exception)
+            {
+
             }
         }
 

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCargasDocentes));
-            this.panel2 = new System.Windows.Forms.Panel();
             this.dgvCargasDocentes = new System.Windows.Forms.DataGridView();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.cmbMateria = new System.Windows.Forms.ComboBox();
@@ -49,28 +48,11 @@
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnMenu = new System.Windows.Forms.Button();
             this.btnInicio = new System.Windows.Forms.Button();
-            this.panel2.SuspendLayout();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCargasDocentes)).BeginInit();
             this.MenuOpciones.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(229)))), ((int)(((byte)(41)))));
-            this.panel2.Controls.Add(this.dgvCargasDocentes);
-            this.panel2.Controls.Add(this.btnBuscar);
-            this.panel2.Controls.Add(this.cmbMateria);
-            this.panel2.Controls.Add(this.cmbCarrera);
-            this.panel2.Controls.Add(this.txtNombreMaestro);
-            this.panel2.Controls.Add(this.txtMaestroID);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(12, 99);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(660, 349);
-            this.panel2.TabIndex = 22;
             // 
             // dgvCargasDocentes
             // 
@@ -81,7 +63,7 @@
             this.dgvCargasDocentes.ReadOnly = true;
             this.dgvCargasDocentes.Size = new System.Drawing.Size(654, 181);
             this.dgvCargasDocentes.TabIndex = 28;
-            this.dgvCargasDocentes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCargasAlumnos_CellClick);
+            this.dgvCargasDocentes.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvCargasDocentes_CellMouseClick);
             // 
             // btnBuscar
             // 
@@ -158,7 +140,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Lato", 12F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(45)))), ((int)(((byte)(46)))));
-            this.label3.Location = new System.Drawing.Point(50, 49);
+            this.label3.Location = new System.Drawing.Point(50, 52);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(70, 19);
             this.label3.TabIndex = 19;
@@ -325,13 +307,31 @@
             this.btnInicio.UseVisualStyleBackColor = true;
             this.btnInicio.Click += new System.EventHandler(this.btnInicio_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(229)))), ((int)(((byte)(41)))));
+            this.panel1.Controls.Add(this.dgvCargasDocentes);
+            this.panel1.Controls.Add(this.btnBuscar);
+            this.panel1.Controls.Add(this.txtMaestroID);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.cmbMateria);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.cmbCarrera);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.txtNombreMaestro);
+            this.panel1.Location = new System.Drawing.Point(12, 99);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(660, 349);
+            this.panel1.TabIndex = 29;
+            // 
             // frmCargasDocentes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(45)))), ((int)(((byte)(46)))));
             this.ClientSize = new System.Drawing.Size(684, 461);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.titulo);
             this.Controls.Add(this.btnMenu);
             this.Controls.Add(this.btnInicio);
@@ -344,17 +344,15 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cargas Docentes";
             this.TopMost = true;
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCargasDocentes)).EndInit();
             this.MenuOpciones.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView dgvCargasDocentes;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.ComboBox cmbMateria;
@@ -374,5 +372,6 @@
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.Button btnNuevo;
+        private System.Windows.Forms.Panel panel1;
     }
 }

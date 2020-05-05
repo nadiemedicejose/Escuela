@@ -86,7 +86,7 @@
             this.dgvMaestros.ReadOnly = true;
             this.dgvMaestros.Size = new System.Drawing.Size(654, 181);
             this.dgvMaestros.TabIndex = 28;
-            this.dgvMaestros.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCargasAlumnos_CellClick);
+            this.dgvMaestros.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvMaestros_CellMouseClick);
             // 
             // btnBuscar
             // 

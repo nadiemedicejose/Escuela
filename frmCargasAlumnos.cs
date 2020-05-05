@@ -257,11 +257,6 @@ namespace Escuela
             HabilitarBotonesMenu(0, 0, 1, 0, 1);
         }
 
-        private void dgvCargasAlumnos_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            BuscarSelección();
-        }
-
         private void BuscarSelección()
         {
             HabilitarCampos(false);
@@ -279,6 +274,11 @@ namespace Escuela
         {
             cmbMateria.Enabled = Convert.ToBoolean(Materia);
             cmbMaestro.Enabled = Convert.ToBoolean(Maestro);
+        }
+
+        private void dgvCargasAlumnos_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            BuscarSelección();
         }
     }
 }

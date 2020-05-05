@@ -74,23 +74,24 @@ bdEscuela.tblCargasDocentes.InsertOnSubmit(objCargaDocente);
             }
         }
 
-        public void BuscarMaestroID(string NombreMaestro, TextBox MaestroID)
+        public void BuscarCargaDocenteCargaID(int CargaID, TextBox txtMaestroID, TextBox txtNombreMaestro, ComboBox cmbCarrera)
         {
             try
             {
-                var Registros = from valor in bdEscuela.tblMaestros
-                                where valor.NombreMaestro == NombreMaestro
+                var Registros = from valor in bdEscuela.BuscarCargaDocenteCargaID(CargaID).ToList()
                                 select valor;
                 if (Registros.Any())
                 {
-                    foreach (var maestro in Registros)
+                    foreach (var registro in Registros)
                     {
-                        MaestroID.Text = maestro.MaestroID.ToString();
+                        txtMaestroID.Text = registro.MaestroID.ToString();
+                        txtNombreMaestro.Text = registro.NombreMaestro.ToString();
+                        cmbCarrera.SelectedValue = registro.CarreraID;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Número de maestro no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Carga docente no encontrada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception)
@@ -99,16 +100,16 @@ bdEscuela.tblCargasDocentes.InsertOnSubmit(objCargaDocente);
             }
         }
 
-        public void BuscarCarreraID(string NombreCarrera, ComboBox cmbCarrera)
+        public void BuscarMateriaID(int CarreraID, ComboBox cmbMateria)
         {
-            var Registros = from valor in bdEscuela.ObtenerCarreras().ToList()
-                            where valor.Carrera == NombreCarrera
+            var Registros = from valor in bdEscuela.tblMateriasCarreras
+                            where valor.CarreraID == CarreraID
                             select valor;
             if (Registros.Any())
             {
-                foreach (var carrera in Registros)
+                foreach (var registro in Registros)
                 {
-                    cmbCarrera.SelectedValue = carrera.Id;
+                    cmbMateria.SelectedValue = registro.MateriaID;
                 }
             }
             else
@@ -135,27 +136,6 @@ bdEscuela.tblCargasDocentes.InsertOnSubmit(objCargaDocente);
             else
             {
                 MessageBox.Show("Número de materia no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        public void BuscarMaestroID(int MateriaID, string NombreMaestro, ComboBox cmbMaestro)
-        {
-            ObtenerMaestrosPorMateriaID(MateriaID, cmbMaestro);
-
-            var Registros = from valor in bdEscuela.tblMaestros
-                            where valor.NombreMaestro == NombreMaestro
-                            select valor;
-            if (Registros.Any())
-            {
-
-                foreach (var maestro in Registros)
-                {
-                    cmbMaestro.SelectedValue = maestro.MaestroID;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Número de maestro no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

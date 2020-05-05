@@ -213,11 +213,6 @@ namespace Escuela
             objCarreras.ObtenerCarreras(dgvCarreras);
         }
 
-        private void dgvCargasAlumnos_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            BuscarSelección();
-        }
-
         private void BuscarSelección()
         {
             HabilitarCampos(false);
@@ -234,6 +229,11 @@ namespace Escuela
         private void txtNombreMateria_TextChanged(object sender, EventArgs e)
         {
             HabilitarBotonesMenu(0, 0, 1, 0, 1);
+        }
+
+        private void dgvCarreras_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            BuscarSelección();
         }
     }
 }

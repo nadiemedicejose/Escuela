@@ -77,6 +77,13 @@ namespace Escuela
         {
             Reportes reportes = new Reportes();
             reportes.Show();
+            //this.Hide();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            frmMateriasCarreras asignacion = new frmMateriasCarreras();
+            asignacion.Show();
             this.Hide();
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace Escuela
 {
-    partial class frmUsuarios
+    partial class frmMateriasCarreras
     {
         /// <summary>
         /// Required designer variable.
@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUsuarios));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMateriasCarreras));
             this.panel2 = new System.Windows.Forms.Panel();
-            this.txtContraseña = new System.Windows.Forms.TextBox();
-            this.dgvUsuarios = new System.Windows.Forms.DataGridView();
-            this.btnBuscar = new System.Windows.Forms.Button();
-            this.txtNombreUsuario = new System.Windows.Forms.TextBox();
-            this.txtUsuarioID = new System.Windows.Forms.TextBox();
+            this.cmbCarrera = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.dgvRelMC = new System.Windows.Forms.DataGridView();
+            this.btnBuscar = new System.Windows.Forms.Button();
+            this.txtNombreMateria = new System.Windows.Forms.TextBox();
+            this.txtMateriaID = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.titulo = new System.Windows.Forms.Label();
@@ -48,45 +48,59 @@
             this.btnActualizar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRelMC)).BeginInit();
             this.MenuOpciones.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(229)))), ((int)(((byte)(41)))));
-            this.panel2.Controls.Add(this.txtContraseña);
-            this.panel2.Controls.Add(this.dgvUsuarios);
-            this.panel2.Controls.Add(this.btnBuscar);
-            this.panel2.Controls.Add(this.txtNombreUsuario);
-            this.panel2.Controls.Add(this.txtUsuarioID);
+            this.panel2.Controls.Add(this.cmbCarrera);
             this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.dgvRelMC);
+            this.panel2.Controls.Add(this.btnBuscar);
+            this.panel2.Controls.Add(this.txtNombreMateria);
+            this.panel2.Controls.Add(this.txtMateriaID);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(12, 99);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(660, 349);
-            this.panel2.TabIndex = 37;
+            this.panel2.TabIndex = 42;
             // 
-            // txtContraseña
+            // cmbCarrera
             // 
-            this.txtContraseña.Enabled = false;
-            this.txtContraseña.Location = new System.Drawing.Point(126, 49);
-            this.txtContraseña.Name = "txtContraseña";
-            this.txtContraseña.Size = new System.Drawing.Size(501, 27);
-            this.txtContraseña.TabIndex = 29;
-            this.txtContraseña.TextChanged += new System.EventHandler(this.DirecciónIngresada);
+            this.cmbCarrera.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbCarrera.Enabled = false;
+            this.cmbCarrera.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cmbCarrera.FormattingEnabled = true;
+            this.cmbCarrera.Location = new System.Drawing.Point(126, 49);
+            this.cmbCarrera.Name = "cmbCarrera";
+            this.cmbCarrera.Size = new System.Drawing.Size(501, 27);
+            this.cmbCarrera.TabIndex = 30;
+            this.cmbCarrera.SelectionChangeCommitted += new System.EventHandler(this.cmbCarrera_SelectionChangeCommitted);
             // 
-            // dgvUsuarios
+            // label3
             // 
-            this.dgvUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUsuarios.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvUsuarios.Location = new System.Drawing.Point(3, 165);
-            this.dgvUsuarios.Name = "dgvUsuarios";
-            this.dgvUsuarios.ReadOnly = true;
-            this.dgvUsuarios.Size = new System.Drawing.Size(654, 181);
-            this.dgvUsuarios.TabIndex = 28;
-            this.dgvUsuarios.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvUsuarios_CellMouseClick);
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Lato", 12F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(45)))), ((int)(((byte)(46)))));
+            this.label3.Location = new System.Drawing.Point(50, 52);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(70, 19);
+            this.label3.TabIndex = 29;
+            this.label3.Text = "Carrera:";
+            // 
+            // dgvRelMC
+            // 
+            this.dgvRelMC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRelMC.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvRelMC.Location = new System.Drawing.Point(3, 165);
+            this.dgvRelMC.Name = "dgvRelMC";
+            this.dgvRelMC.ReadOnly = true;
+            this.dgvRelMC.Size = new System.Drawing.Size(654, 181);
+            this.dgvRelMC.TabIndex = 28;
+            this.dgvRelMC.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvRelMC_CellMouseClick);
             // 
             // btnBuscar
             // 
@@ -104,34 +118,23 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // txtNombreUsuario
+            // txtNombreMateria
             // 
-            this.txtNombreUsuario.Enabled = false;
-            this.txtNombreUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtNombreUsuario.Location = new System.Drawing.Point(421, 11);
-            this.txtNombreUsuario.Name = "txtNombreUsuario";
-            this.txtNombreUsuario.Size = new System.Drawing.Size(206, 27);
-            this.txtNombreUsuario.TabIndex = 23;
+            this.txtNombreMateria.Enabled = false;
+            this.txtNombreMateria.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtNombreMateria.Location = new System.Drawing.Point(421, 11);
+            this.txtNombreMateria.Name = "txtNombreMateria";
+            this.txtNombreMateria.Size = new System.Drawing.Size(206, 27);
+            this.txtNombreMateria.TabIndex = 23;
             // 
-            // txtUsuarioID
+            // txtMateriaID
             // 
-            this.txtUsuarioID.Enabled = false;
-            this.txtUsuarioID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtUsuarioID.Location = new System.Drawing.Point(126, 11);
-            this.txtUsuarioID.Name = "txtUsuarioID";
-            this.txtUsuarioID.Size = new System.Drawing.Size(166, 27);
-            this.txtUsuarioID.TabIndex = 22;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Lato", 12F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(45)))), ((int)(((byte)(46)))));
-            this.label3.Location = new System.Drawing.Point(24, 52);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(96, 19);
-            this.label3.TabIndex = 19;
-            this.label3.Text = "Contraseña:";
+            this.txtMateriaID.Enabled = false;
+            this.txtMateriaID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtMateriaID.Location = new System.Drawing.Point(126, 11);
+            this.txtMateriaID.Name = "txtMateriaID";
+            this.txtMateriaID.Size = new System.Drawing.Size(166, 27);
+            this.txtMateriaID.TabIndex = 22;
             // 
             // label2
             // 
@@ -140,9 +143,9 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(45)))), ((int)(((byte)(46)))));
             this.label2.Location = new System.Drawing.Point(347, 14);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 19);
+            this.label2.Size = new System.Drawing.Size(70, 19);
             this.label2.TabIndex = 18;
-            this.label2.Text = "Usuario:";
+            this.label2.Text = "Materia:";
             // 
             // label1
             // 
@@ -151,9 +154,9 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(45)))), ((int)(((byte)(46)))));
             this.label1.Location = new System.Drawing.Point(26, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 19);
+            this.label1.Size = new System.Drawing.Size(90, 19);
             this.label1.TabIndex = 17;
-            this.label1.Text = "Usuario ID:";
+            this.label1.Text = "Materia ID:";
             // 
             // titulo
             // 
@@ -162,8 +165,8 @@
             this.titulo.Location = new System.Drawing.Point(13, 13);
             this.titulo.Name = "titulo";
             this.titulo.Size = new System.Drawing.Size(276, 66);
-            this.titulo.TabIndex = 36;
-            this.titulo.Text = "\r\nUsuarios";
+            this.titulo.TabIndex = 41;
+            this.titulo.Text = "Asignación de Materias por Carrera";
             // 
             // btnMenu
             // 
@@ -177,7 +180,7 @@
             this.btnMenu.Location = new System.Drawing.Point(529, 13);
             this.btnMenu.Name = "btnMenu";
             this.btnMenu.Size = new System.Drawing.Size(66, 66);
-            this.btnMenu.TabIndex = 35;
+            this.btnMenu.TabIndex = 40;
             this.btnMenu.UseVisualStyleBackColor = true;
             this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
             // 
@@ -193,7 +196,7 @@
             this.btnInicio.Location = new System.Drawing.Point(601, 13);
             this.btnInicio.Name = "btnInicio";
             this.btnInicio.Size = new System.Drawing.Size(66, 66);
-            this.btnInicio.TabIndex = 34;
+            this.btnInicio.TabIndex = 39;
             this.btnInicio.UseVisualStyleBackColor = true;
             this.btnInicio.Click += new System.EventHandler(this.btnInicio_Click);
             // 
@@ -208,7 +211,7 @@
             this.MenuOpciones.Location = new System.Drawing.Point(295, 13);
             this.MenuOpciones.Name = "MenuOpciones";
             this.MenuOpciones.Size = new System.Drawing.Size(228, 66);
-            this.MenuOpciones.TabIndex = 33;
+            this.MenuOpciones.TabIndex = 38;
             // 
             // btnCancelar
             // 
@@ -294,7 +297,7 @@
             this.btnNuevo.UseVisualStyleBackColor = true;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
-            // frmUsuarios
+            // frmMateriasCarreras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -308,13 +311,13 @@
             this.Font = new System.Drawing.Font("Lato", 12F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "frmUsuarios";
+            this.Name = "frmMateriasCarreras";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Usuarios";
+            this.Text = "Asignación de Materias por Carrera";
             this.TopMost = true;
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRelMC)).EndInit();
             this.MenuOpciones.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -323,12 +326,10 @@
         #endregion
 
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox txtContraseña;
-        private System.Windows.Forms.DataGridView dgvUsuarios;
+        private System.Windows.Forms.DataGridView dgvRelMC;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.TextBox txtNombreUsuario;
-        private System.Windows.Forms.TextBox txtUsuarioID;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtNombreMateria;
+        private System.Windows.Forms.TextBox txtMateriaID;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label titulo;
@@ -340,5 +341,7 @@
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.Button btnNuevo;
+        private System.Windows.Forms.ComboBox cmbCarrera;
+        private System.Windows.Forms.Label label3;
     }
 }

@@ -322,4 +322,42 @@
       <Column Name="NombreAlumno" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.InsertarRelacionMateriasCarrera" Method="InsertarRelacionMateriasCarrera">
+    <Parameter Name="CarreraID" Parameter="carreraID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MateriaID" Parameter="materiaID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EliminarRelacionMateriasCarrera" Method="EliminarRelacionMateriasCarrera">
+    <Parameter Name="CarreraID" Parameter="carreraID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MateriaID" Parameter="materiaID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ActualizarRelacionMateriasCarrera" Method="ActualizarRelacionMateriasCarrera">
+    <Parameter Name="CarreraIDAnterior" Parameter="carreraIDAnterior" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CarreraIDNuevo" Parameter="carreraIDNuevo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MateriaID" Parameter="materiaID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ObtenerRelacionMateriasCarrera" Method="ObtenerRelacionMateriasCarrera">
+    <ElementType Name="ObtenerRelacionMateriasCarreraResult">
+      <Column Name="Carrera" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="Materia" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BuscarRelacionMateriasCarrera" Method="BuscarRelacionMateriasCarrera">
+    <Parameter Name="NombreMateria" Parameter="nombreMateria" Type="System.String" DbType="VarChar(80)" />
+    <ElementType Name="BuscarRelacionMateriasCarreraResult">
+      <Column Name="CarreraID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MateriaID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BuscarCargaDocenteCargaID" Method="BuscarCargaDocenteCargaID">
+    <Parameter Name="CargaID" Parameter="cargaID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="BuscarCargaDocenteCargaIDResult">
+      <Column Name="MaestroID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NombreMaestro" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CarreraID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MateriaID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

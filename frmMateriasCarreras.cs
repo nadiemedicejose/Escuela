@@ -10,15 +10,17 @@ using System.Windows.Forms;
 
 namespace Escuela
 {
-    public partial class frmCargasDocentes : Form
+    public partial class frmMateriasCarreras : Form
     {
-        CargasDocentesQueries objCargaDocente = new CargasDocentesQueries();
+        CarrerasQueries objCarreras = new CarrerasQueries();
+        MateriasCarrerasQueries objRelMC = new MateriasCarrerasQueries();
         private String acción;
+        private int CarreraID_Anterior = 0;
 
-        public frmCargasDocentes()
+        public frmMateriasCarreras()
         {
             InitializeComponent();
-            objCargaDocente.RellenarCarreras(cmbCarrera);
+            objCarreras.RellenarCarreras(cmbCarrera);
             ActualizarTabla();
         }
 
@@ -38,10 +40,9 @@ namespace Escuela
 
         public void LimpiarCampos()
         {
-            txtMaestroID.Text = null;
-            txtNombreMaestro.Text = null;
-            cmbCarrera.Text = null;
-            cmbMateria.Text = null;
+            txtMateriaID.Text = null;
+            txtNombreMateria.Text = null;
+            cmbCarrera.SelectedValue = 0;
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -51,14 +52,20 @@ namespace Escuela
             // Nuevo, Actualizar, Guardar, Eliminar y Cancelar
             HabilitarBotonesMenu(0, 0, 0, 0, 1);
             btnBuscar.Enabled = true;
-            txtMaestroID.Enabled = true;
+            txtMateriaID.Enabled = true;
+            txtNombreMateria.Enabled = false;
+            cmbCarrera.Enabled = false;
             acción = "nuevo";
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             HabilitarBotonesMenu(0, 0, 1, 0, 1);
-            HabilitarCampos(true);
+            btnBuscar.Enabled = false;
+            txtMateriaID.Enabled = false;
+            txtNombreMateria.Enabled = false;
+            CarreraID_Anterior = Convert.ToInt32(cmbCarrera.SelectedValue);
+            cmbCarrera.Enabled = true;
             acción = "actualizar";
         }
 
@@ -70,25 +77,24 @@ namespace Escuela
 
                 if (opcion == DialogResult.Yes)
                 {
-                    int MaestroID = Convert.ToInt32(txtMaestroID.Text);
                     int CarreraID = Convert.ToInt32(cmbCarrera.SelectedValue);
-                    int MateriaID = Convert.ToInt32(cmbMateria.SelectedValue);
+                    int MateriaID = Convert.ToInt32(txtMateriaID.Text);
 
                     if (acción == "nuevo")
                     {
-                        objCargaDocente.InsertarCargaDocente(MaestroID, CarreraID, MateriaID);
+                        objRelMC.InsertarRelacionMateriaCarrera(CarreraID, MateriaID);
                     }
                     else if (acción == "actualizar")
                     {
-                        int CargaID = Convert.ToInt32(dgvCargasDocentes.Rows[dgvCargasDocentes.CurrentRow.Index].Cells[0].Value);
-                        objCargaDocente.ActualizarCargaDocente(CargaID, MaestroID, CarreraID, MateriaID);
+                        objRelMC.ActualizarRelacionMateriasCarrera(CarreraID_Anterior, CarreraID, MateriaID);
+                        CarreraID_Anterior = 0;
                     }
 
                     ActualizarTabla();
                     HabilitarBotonesMenu(1, 0, 0, 0, 0);
-                    acción = "guardar";
                     LimpiarCampos();
                     HabilitarCampos(false);
+                    acción = "guardar";
                 }
             }
             catch (Exception error)
@@ -105,9 +111,10 @@ namespace Escuela
             {
                 try
                 {
-                    int CargaID = Convert.ToInt32(dgvCargasDocentes.Rows[dgvCargasDocentes.CurrentRow.Index].Cells[0].Value);
+                    int CarreraID = Convert.ToInt32(cmbCarrera.SelectedValue);
+                    int MateriaID = Convert.ToInt32(txtMateriaID.Text);
 
-                    objCargaDocente.EliminarCargaDocente(CargaID);
+                    objRelMC.EliminarRelacionMateriasCarrera(CarreraID, MateriaID);
                     ActualizarTabla();
                     HabilitarBotonesMenu(1, 0, 0, 0, 0);
                     LimpiarCampos();
@@ -115,7 +122,7 @@ namespace Escuela
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Selecciona la carga del docente que deseas eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Selecciona el registro que deseas eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -128,45 +135,39 @@ namespace Escuela
                 {
                     try
                     {
-                        int MaestroID = Convert.ToInt32(txtMaestroID.Text);
-                        bdEscuela.BuscarMaestro(MaestroID);
+                        int MateriaID = Convert.ToInt32(txtMateriaID.Text);
 
-                        var Registros = from valor in bdEscuela.tblMaestros
-                                        where valor.MaestroID == MaestroID
+                        var Registros = from valor in bdEscuela.tblMaterias
+                                        where valor.MateriaID == MateriaID
                                         select valor;
                         if (Registros.Any())
                         {
-                            foreach (var maestro in Registros)
+                            foreach (var materia in Registros)
                             {
-                                txtNombreMaestro.Text = maestro.NombreMaestro;
-
-                                if (acción == "nuevo")
-                                {
-                                    HabilitarCampos(true);
-                                }
+                                txtNombreMateria.Text = materia.NombreMateria;
                             }
+
+                            cmbCarrera.Enabled = true;
                         }
                         else
                         {
                             LimpiarCampos();
-                            cmbMateria.Enabled = false;
-                            txtMaestroID.Focus();
-                            MessageBox.Show("Número de maestro no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            txtMateriaID.Focus();
+                            MessageBox.Show("Número de materia no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     catch (Exception)
                     {
                         LimpiarCampos();
-                        cmbMateria.Enabled = false;
-                        txtMaestroID.Focus();
-                        MessageBox.Show("Error al obtener el número de maestro", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtMateriaID.Focus();
+                        MessageBox.Show("Número de materia no válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Ingresa el número de maestro", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtMaestroID.Focus();
+                MessageBox.Show("Ingresa el número de materia", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtMateriaID.Focus();
             }
         }
 
@@ -183,7 +184,6 @@ namespace Escuela
             {
                 case "nuevo":
                     {
-                        acción = "cancelar";
                         LimpiarCampos();
                         HabilitarBotonesMenu(1, 0, 0, 0, 0);
                         break;
@@ -215,32 +215,14 @@ namespace Escuela
         public void HabilitarCampos(bool estado)
         {
             btnBuscar.Enabled = estado;
-            txtMaestroID.Enabled = estado;
+            txtMateriaID.Enabled = estado;
+            txtNombreMateria.Enabled = estado;
             cmbCarrera.Enabled = estado;
-            cmbMateria.Enabled = estado;
-        }
-
-        private void CargarMaterias_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if (acción == "nuevo" || acción == "actualizar")
-            {
-                try
-                {
-                    int CarreraID = Convert.ToInt32(cmbCarrera.SelectedValue);
-                    int MaestroID = Convert.ToInt32(txtMaestroID.Text);
-                    objCargaDocente.ObtenerMateriasPorCarrera(MaestroID, CarreraID, cmbMateria);
-                    cmbMateria.Enabled = true;
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error al cargar materias", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
         }
 
         public void ActualizarTabla()
         {
-            objCargaDocente.ObtenerCargasDocentes(dgvCargasDocentes);
+            objRelMC.ObtenerMateriasCarrera(dgvRelMC);
         }
 
         private void BuscarSelección()
@@ -249,19 +231,18 @@ namespace Escuela
             HabilitarBotonesMenu(1, 1, 0, 1, 0);
             acción = "buscar";
 
-            int CargaID = Convert.ToInt32(dgvCargasDocentes.CurrentRow.Cells[0].Value.ToString());
+            String NombreMateria = dgvRelMC.CurrentRow.Cells[1].Value.ToString();
 
-            objCargaDocente.BuscarCargaDocenteCargaID(CargaID, txtMaestroID, txtNombreMaestro, cmbCarrera);
-            int CarreraID = Convert.ToInt32(cmbCarrera.SelectedValue);
-            objCargaDocente.BuscarMateriaID(CarreraID, cmbMateria);
+            objRelMC.BuscarRelacionMateriasCarrera(NombreMateria, txtMateriaID, cmbCarrera);
+            txtNombreMateria.Text = NombreMateria;
         }
 
-        private void cmbMateria_SelectionChangeCommitted_1(object sender, EventArgs e)
+        private void cmbCarrera_SelectionChangeCommitted(object sender, EventArgs e)
         {
             HabilitarBotonesMenu(0, 0, 1, 0, 1);
         }
 
-        private void dgvCargasDocentes_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void dgvRelMC_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             BuscarSelección();
         }

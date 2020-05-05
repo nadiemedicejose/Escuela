@@ -73,7 +73,7 @@
             this.dgvCarreras.ReadOnly = true;
             this.dgvCarreras.Size = new System.Drawing.Size(654, 181);
             this.dgvCarreras.TabIndex = 28;
-            this.dgvCarreras.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCargasAlumnos_CellClick);
+            this.dgvCarreras.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvCarreras_CellMouseClick);
             // 
             // btnBuscar
             // 
